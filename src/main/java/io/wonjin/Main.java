@@ -9,16 +9,19 @@ public class Main {
     private static final int SERVER_TYPE_INDEX = 0;
 
     public static void main(String[] args) {
-        ServerType serverType = ServerType.valueOf(args[SERVER_TYPE_INDEX]);
+        args = new String[1];
+        args[SERVER_TYPE_INDEX] = "async";
+
+        ServerType serverType = ServerType.of(args[SERVER_TYPE_INDEX]);
 
         switch (serverType) {
-            case ASYNC_SERVER -> {
+            case ASYNC_SERVER:
                 new AsyncServer().run();
-            }
+                break;
 
-            case SYNC_SERVER -> {
+            case SYNC_SERVER:
                 new SyncServer().run();
-            }
+                break;
         }
     }
 }

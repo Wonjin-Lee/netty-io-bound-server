@@ -1,4 +1,7 @@
 package io.wonjin.netty.server.async.handler;
 
-public class ResponseProcessor {
+import io.netty.channel.ChannelOutboundHandlerAdapter;
+
+public class ResponseProcessor extends ChannelOutboundHandlerAdapter {
+
 }
