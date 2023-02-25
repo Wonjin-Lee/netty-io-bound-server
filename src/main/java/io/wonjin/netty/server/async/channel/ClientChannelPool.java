@@ -18,4 +18,8 @@ public class ClientChannelPool {
         queue.add(channel);
         log.info("Current Pool Size : {}", queue.size());
     }
+
+    public static Queue<Channel> getStoredChannelList() {
+        return queue;
+    }
 }

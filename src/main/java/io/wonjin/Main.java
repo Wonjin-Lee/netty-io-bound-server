@@ -8,7 +8,7 @@ public class Main {
 
     private static final int SERVER_TYPE_INDEX = 0;
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         args = new String[1];
         args[SERVER_TYPE_INDEX] = "async";
 

@@ -4,7 +4,7 @@ import io.wonjin.netty.server.Server;
 
 public class SyncServer implements Server {
     @Override
-    public void run() {
+    public void run() throws Exception{
 
     }
 }
