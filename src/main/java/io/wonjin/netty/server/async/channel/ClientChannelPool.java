@@ -3,23 +3,25 @@ package io.wonjin.netty.server.async.channel;
 import io.netty.channel.Channel;
 import lombok.extern.slf4j.Slf4j;
 
-import java.util.Queue;
-import java.util.concurrent.ConcurrentLinkedQueue;
+import java.security.SecureRandom;
+import java.util.ArrayList;
+import java.util.List;
 
 @Slf4j
 public class ClientChannelPool {
-    private static final Queue<Channel> queue = new ConcurrentLinkedQueue<>();
+    private static final List<Channel> list = new ArrayList<>();
 
     public static Channel getChannel() {
-        return queue.peek();
+        int randomIndex = new SecureRandom().nextInt(list.size());
+        return list.get(randomIndex);
     }
 
     public static void addChannel(Channel channel) {
-        queue.add(channel);
-        log.info("Current Pool Size : {}", queue.size());
+        list.add(channel);
+        log.info("Current Pool Size : {}", list.size());
     }
 
-    public static Queue<Channel> getStoredChannelList() {
-        return queue;
+    public static List<Channel> getStoredChannelList() {
+        return list;
     }
 }

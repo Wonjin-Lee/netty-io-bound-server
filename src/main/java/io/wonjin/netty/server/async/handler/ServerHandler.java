@@ -8,6 +8,8 @@ import lombok.extern.slf4j.Slf4j;
 public class ServerHandler extends ChannelInboundHandlerAdapter {
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
+        log.info("[ServerHandler - channelActive] Channel(Client -> Server) is active !!!");
+
         String address = ctx.channel().remoteAddress().toString();
         log.info("Client Address : {}", address);
     }

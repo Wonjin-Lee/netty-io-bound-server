@@ -11,8 +11,10 @@ public class ClientHandler extends ChannelInboundHandlerAdapter {
 
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
+        log.info("[ClientHandler - channelActive] Channel(Server -> Client) is active !!!");
+
         Channel channel = ctx.channel();
-        log.info("Channel ID : {}", channel.id());
+        log.info("Channel Information : {}", channel.toString());
 
         ClientChannelPool.addChannel(channel);
     }
