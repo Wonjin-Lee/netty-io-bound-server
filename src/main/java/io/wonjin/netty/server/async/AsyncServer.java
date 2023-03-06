@@ -31,44 +31,44 @@ public class AsyncServer implements Server {
                 .channel(NioServerSocketChannel.class)
                 .childHandler(new ServerChannelInitializer());
 
-        log.info("Server Port : {}", CLIENT_PORT);
+        log.info("Server Port : {}", SERVER_PORT);
 
-        serverBootstrap.bind(new InetSocketAddress(CLIENT_PORT));
+        serverBootstrap.bind(new InetSocketAddress(SERVER_PORT));
 
-        EventLoopGroup eventLoopGroup = new NioEventLoopGroup();
-        Bootstrap clientBootstrap = new Bootstrap()
-                .group(eventLoopGroup)
-                .channel(NioSocketChannel.class)
-                .handler(new ClientChannelInitializer());
-
-        log.info("Client Port : {}", SERVER_PORT);
-
-        while (true) {
-            boolean isConnected = true;
-            for (int i = 0; i < 5; i++) {
-                ChannelFuture future = clientBootstrap.connect(new InetSocketAddress("127.0.0.1", SERVER_PORT));
-
-                Thread.sleep(2000);
-                if (!future.channel().isActive()) {
-                    log.warn("Client socket is not connected !!!");
-                    Thread.sleep(5000);
-                    isConnected = false;
-                    break;
-                }
-            }
-
-            if (isConnected) {
-                break;
-            }
-        }
-
-        Thread.sleep(5000);
-
-        log.info("Bootstrap Succcess !!!");
-
-        ClientChannelPool.getStoredChannelList().forEach(channel -> {
-            log.info(channel.toString());
-            log.info("" + channel.id());
-        });
+//        EventLoopGroup eventLoopGroup = new NioEventLoopGroup();
+//        Bootstrap clientBootstrap = new Bootstrap()
+//                .group(eventLoopGroup)
+//                .channel(NioSocketChannel.class)
+//                .handler(new ClientChannelInitializer());
+//
+//        log.info("Client Port : {}", SERVER_PORT);
+//
+//        while (true) {
+//            boolean isConnected = true;
+//            for (int i = 0; i < 5; i++) {
+//                ChannelFuture future = clientBootstrap.connect(new InetSocketAddress("127.0.0.1", SERVER_PORT));
+//
+//                Thread.sleep(2000);
+//                if (!future.channel().isActive()) {
+//                    log.warn("Client socket is not connected !!!");
+//                    Thread.sleep(5000);
+//                    isConnected = false;
+//                    break;
+//                }
+//            }
+//
+//            if (isConnected) {
+//                break;
+//            }
+//        }
+//
+//        Thread.sleep(5000);
+//
+//        log.info("Bootstrap Succcess !!!");
+//
+//        ClientChannelPool.getStoredChannelList().forEach(channel -> {
+//            log.info(channel.toString());
+//            log.info("" + channel.id());
+//        });
     }
 }

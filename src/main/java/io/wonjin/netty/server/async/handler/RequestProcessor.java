@@ -16,7 +16,8 @@ public class RequestProcessor extends ChannelInboundHandlerAdapter {
 
         DataBody requestBody = (DataBody) msg;
 
-        Channel channel = ClientChannelPool.getChannel();
-        channel.writeAndFlush(requestBody);
+        log.info(requestBody.toString());
+//        Channel channel = ClientChannelPool.getChannel();
+//        channel.writeAndFlush(requestBody);
     }
 }
